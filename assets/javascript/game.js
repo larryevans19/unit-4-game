@@ -56,6 +56,22 @@ $(document).ready(function () {
         crystal52 = Math.floor(Math.random() * 12 + 1);
         crystal90 = Math.floor(Math.random() * 12 + 1);
         scoreOptions.splice(0, 4, crystal17, crystal28, crystal52, crystal90);
+        $("#crystals").empty()
+        for (var j = 0; j < scoreOptions.length; j++) {
+
+            var imageTrophy = $("<img>");
+
+            imageTrophy.addClass("trophy-image");
+
+            imageTrophy.attr("src", trophies[j]);
+
+            imageTrophy.attr("id", j);
+
+            imageTrophy.attr("data-trophyvalue", scoreOptions[j]);
+
+            $("#crystals").append(imageTrophy);
+
+        }
         console.log("next 1917:", crystal17);
         console.log("next 1928:", crystal28);
         console.log("next 1952:", crystal52);
@@ -68,21 +84,44 @@ $(document).ready(function () {
     function game(crystal17, crystal28, crystal52, crystal90) {
         $(".trophy-image").on("click", function () {
 
-            // $("#assets/images/1917.png").mousedown(function() {
-            //     $("#assets/images/1917.png").css("border-bottom", "5px solid white");
-            //   });
-            // $("#assets/images/1917.png").mouseup(function() {
-            //     $("#assets/images/1917.png").css("border-bottom", "12px solid white");
-            // });
-
-            var trophyValue = ($(this).attr("data-trophyvalue"));
-            trophyValue = parseInt(trophyValue);
+            $("#0").mousedown(function () {
+                $("#0").css("border-bottom", "5px solid white");
+            });
+            $("#0").mouseup(function () {
+                $("#0").css("border-bottom", "10px solid white");
+            });
+            $("#1").mousedown(function () {
+                $("#1").css("border-bottom", "5px solid white");
+            });
+            $("#1").mouseup(function () {
+                $("#1").css("border-bottom", "10px solid white");
+            });
+            $("#2").mousedown(function () {
+                $("#2").css("border-bottom", "5px solid white");
+            });
+            $("#2").mouseup(function () {
+                $("#2").css("border-bottom", "10px solid white");
+            });
+            $("#3").mousedown(function () {
+                $("#3").css("border-bottom", "5px solid white");
+            });
+            $("#3").mouseup(function () {
+                $("#3").css("border-bottom", "10px solid white");
+            });
 
             for (var j = 0; j < scoreOptions.length; j++) {
-            imageTrophy.attr("data-trophyvalue", scoreOptions[j]);
-            console.log("Current:",scoreOptions);
-            console.log()
+
+                imageTrophy.attr("data-trophyvalue", scoreOptions[j]);
+                console.log("Current:", scoreOptions);
+                console.log()
+                var trophyValue = ($(this).attr("data-trophyvalue"));
+                trophyValue = parseInt(trophyValue);
             }
+            // for (var j = 0; j < scoreOptions.length; j++) {
+            //     imageTrophy.attr("data-trophyvalue", scoreOptions[j]);
+            //     console.log("Current:", scoreOptions);
+            //     console.log()
+            // }
 
             score += trophyValue;
 
@@ -90,7 +129,11 @@ $(document).ready(function () {
 
             console.log("magicNum:", magicNum);
 
-            if (score === magicNum) {
+            if (score !== 0 && score < magicNum) {
+                $("#message").text("Pick a trophy!")
+            }
+
+            else if (score === magicNum) {
                 console.log("score", score)
                 $("#message").text("You win!");
                 wins++;
