@@ -38,7 +38,7 @@ $(document).ready(function () {
 
         imageTrophy.attr("src", trophies[j]);
 
-        imageTrophy.attr("id", trophies[j]);
+        imageTrophy.attr("id", j);
 
         imageTrophy.attr("data-trophyvalue", scoreOptions[j]);
 
@@ -55,46 +55,58 @@ $(document).ready(function () {
         crystal28 = Math.floor(Math.random() * 12 + 1);
         crystal52 = Math.floor(Math.random() * 12 + 1);
         crystal90 = Math.floor(Math.random() * 12 + 1);
-        scoreOptions.splice(0,4,crystal17, crystal28, crystal52, crystal90);
+        scoreOptions.splice(0, 4, crystal17, crystal28, crystal52, crystal90);
         console.log("next 1917:", crystal17);
         console.log("next 1928:", crystal28);
         console.log("next 1952:", crystal52);
         console.log("next 1990:", crystal90);
-        console.log("next magicNum:",magicNum);
-        console.log("scoreOptions:",scoreOptions);
+        console.log("next magicNum:", magicNum);
+        console.log("scoreOptions:", scoreOptions);
+        game(crystal17, crystal28, crystal52, crystal90)
     }
 
-    $(".trophy-image").on("click", function () {
+    function game(crystal17, crystal28, crystal52, crystal90) {
+        $(".trophy-image").on("click", function () {
 
-        // $("#assets/images/1917.png").mousedown(function() {
-        //     $("#assets/images/1917.png").css("border-bottom", "5px solid white");
-        //   });
-        // $("#assets/images/1917.png").mouseup(function() {
-        //     $("#assets/images/1917.png").css("border-bottom", "12px solid white");
-        // });
-        
-        var trophyValue = ($(this).attr("data-trophyvalue"));
-        trophyValue = parseInt(trophyValue);
+            // $("#assets/images/1917.png").mousedown(function() {
+            //     $("#assets/images/1917.png").css("border-bottom", "5px solid white");
+            //   });
+            // $("#assets/images/1917.png").mouseup(function() {
+            //     $("#assets/images/1917.png").css("border-bottom", "12px solid white");
+            // });
 
-        score += trophyValue;
+            var trophyValue = ($(this).attr("data-trophyvalue"));
+            trophyValue = parseInt(trophyValue);
 
-        $("#score").text(score);
+            for (var j = 0; j < scoreOptions.length; j++) {
+            imageTrophy.attr("data-trophyvalue", scoreOptions[j]);
+            console.log("Current:",scoreOptions);
+            console.log()
+            }
 
-        console.log("magicNum:",magicNum);
+            score += trophyValue;
 
-        if (score === magicNum) {
-           console.log("score",score) 
-            $("#message").text("You win!");
-            wins++;
-            $("#wins").text(wins);
-            newRound();
-        }
+            $("#score").text(score);
 
-        else if (score >= magicNum) {
-            $("#message").text("You lose!");
-            losses++;
-            $("#losses").text(losses);
-            newRound()
-        }
-    });
+            console.log("magicNum:", magicNum);
+
+            if (score === magicNum) {
+                console.log("score", score)
+                $("#message").text("You win!");
+                wins++;
+                $("#wins").text(wins);
+                newRound();
+            }
+
+            else if (score >= magicNum) {
+                $("#message").text("You lose!");
+                losses++;
+                $("#losses").text(losses);
+                newRound()
+            }
+        });
+
+    };
+
+    game(crystal17, crystal28, crystal52, crystal90);
 });
