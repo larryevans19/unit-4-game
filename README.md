@@ -6,4 +6,4 @@ In the fun, math based, **_GT Crystal Trophy Collector_** game, players are give
 
 After each round is complete, a new random **Trophy Target** number is displayed.  But to keep things interesting, each crystal trophy is also assigned a new hidden random number each round.  So you better be ready to use your math skills if you want to be a true **_GT Crystal Trophy Collector_**
 
-**Play the game!** https://larryevans19.github.io/unit-4-game/ 
+[**Play the game!**] (https://larryevans19.github.io/unit-4-game/)
